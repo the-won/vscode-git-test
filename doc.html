@@ -36,6 +36,68 @@
             const el = $.el(html); 
             console.log(el);
         }
+
+        function f4(f1, f2, f3){
+            return f3( f1() + f2() );
+        }
+        console.log(
+        f4(_=>2, _=>2, a=>a*a) );
+
+
+        // function addMake(a){
+        //     return function(b){
+        //         return a+b; 
+        //     }
+        // }
+        const addMake = a =>  b=> a+b;
+
+        var tm = addMake(2); 
+        console.log(tm(6));
+
+        var users = [
+            {id: 1, name: 'wonjae', age: 31},
+            {id: 2, name: 'grrr', age: 19},
+            {id: 3, name: 'dongr', age: 39},
+            {id: 4, name: 'chang', age: 22},
+            {id: 5, name: 'jaho', age: 41},
+            {id: 6, name: 'lete', age: 27},
+            {id: 7, name: 'king', age: 55},
+            {id: 8, name: 'mong', age: 24} 
+        ];
+
+        // 30세 이상의 유저를 뽑아라 
+        var tempUsers = []; 
+        for(var i=0; i< users.length; i++){
+            if(users[i].age >= 30){
+                tempUsers.push(users[i]);
+            }
+        }
+        console.log(tempUsers)
+        // 30세 이상의 유저의 이름을 출력해라 
+        var names = []; 
+        for(var i=0; i< tempUsers.length; i++){
+            names.push(tempUsers[i].name);
+        }
+        console.log(names);
+
+        // 함수형으로 표현하기 
+        function _filter(users, predi) {
+            var new_list = []; 
+            for(var i=0; i< users.length; i++){
+                if( predi(users[i]) ){
+                    new_list.push(users[i]);
+                }
+            }
+
+            return new_list;
+        }
+        console.log("===============")
+        console.log(
+            _filter(users, function(user){
+                return user.age >= 30;
+            })
+        )
+
     </script>
 
 </body>
