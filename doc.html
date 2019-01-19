@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/util.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Git hello~</h1>
+    <h1>Todo List</h1>
+    <div id="app">
+        <button type="button" class="create">이슈생성</button>
+    </div>
+
+    
+
+    <script type="text/javascript">
+        const temp = _ => `
+            <div class="widget">
+                <div class="container">
+                    <div class="header">
+                        <button type="button" class="save">저장</button>
+                        <button type="button" class="cancle">취소</button>
+                    </div>
+                    <div class="body">
+                        <div class="name"><input type="text" name="name"></div>
+                        <div class="description"><textarea name="description"></textarea></div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.querySelector('.create').onclick= function(){
+            const html = temp(); 
+            const el = $.el(html); 
+            console.log(el);
+        }
+    </script>
+
 </body>
 </html>
