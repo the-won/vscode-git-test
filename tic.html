@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tic tak tok</title>
+    <style type="text/css">
+        .table {border-collapse: collapse;}
+        .table td {width: 50px; height: 50px; border: 1px solid #000; cursor: pointer; text-align: center}
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        var body = document.body; 
+        var table = document.createElement('table');
+        table.classList.add('table');
+        var column = [];
+        var line = [];  
+        var turn = 'X';
+
+        var callback = function(e){
+            // console.log(e.target);
+            // console.log(e.target.parentNode); 
+            // console.log(e.target.parentNode.parentNode); 
+            var qline = line.indexOf(e.target.parentNode);
+            var qcolumn = column[qline].indexOf(e.target);
+            
+            if( column[qline][qcolumn].textContent !== undefined ){
+                console.log('빈칸아닙니다.');
+                column[qline][qcolumn].textContent= turn;
+                if(turn === 'X'){
+                    turn = 'O';
+                }else {
+                    turn = 'X'
+                }
+            }else {
+                console.log('빈칸입니다.')
+            }
+        }
+
+        for(var i=0; i< 3; i++){
+            var tr = document.createElement('tr');
+            column.push([]);
+            line.push(tr);
+
+            for(var j=0; j< 3; j++){
+                var td = document.createElement('td');
+                tr.appendChild(td);
+                column[i].push(td);
+                td.addEventListener('click', callback);    
+            }
+
+            table.appendChild(tr);
+        }
+        body.appendChild(table);
+        //console.log(column, line);
+    </script>
+</body>
+</html>
