@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/unit.js"></script>
+    <style type="text/css">
+        table td{ width: 30px; height: 30px; border: 1px solid #333; cursor: pointer;}
+    </style>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        function Marine(){
+            return new Unit("m1",30,45,10,100); 
+        }
+
+        function Zering(){
+            return new Unit("z1",23,33,5,100);
+        }
+
+        var m1 = new Marine(); 
+        var z1 = new Zering(); 
+
+        console.dir(m1);
+        attack(z1, m1); 
+
+        console.dir(z1);
+        console.dir(m1);
+    </script>
+
+
+    <script type="text/javascript">
+        var body = document.body;
+        var table = document.createElement('table');
+        var virtual_td = [];
+        
+        for(var i=0; i< 3; i++){
+            var tr = document.createElement('tr');
+            virtual_td.push([]);
+
+            for(var j=0; j< 3; j++){
+                var td = document.createElement('td');
+                tr.appendChild(td);
+                virtual_td[][]
+            }
+            table.appendChild(tr);
+        }
+        
+        body.appendChild(table);
+
+    </script>
+</body>
+</html>

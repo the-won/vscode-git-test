@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var body = document.body;
+        var table = document.createElement('table');
+
+        for(var i=0; i< 3; i++){
+            var tr = document.createElement('tr');
+
+            for(var j=0; j< 3; j++){
+                var td = document.createElement('td');
+                tr.appendChild(td);
+            }
+
+            table.appendChild(tr);
+        }
+        body.appendChild(table);
+        console.log(body);
+
+    </script>
+</body>
+</html>
