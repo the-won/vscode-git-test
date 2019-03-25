@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style type="text/css">
+        .game {font-size: 17px; letter-spacing: 2px;}
+    </style>
 </head>
 <body>
     <script type="text/javascript">
@@ -23,6 +26,42 @@
         }
         body.appendChild(table);
         console.log(body);
+
+        
+
+    </script>
+
+    <div class="game">바위</div>
+
+    <div class="btns">
+        <button type="button">바위</button>
+        <button type="button">가위</button>
+        <button type="button">보</button>
+    </div>
+
+    <script type="text/javascript">
+        
+
+        setInterval(function(){
+            var viewer = document.querySelector('.game');
+            var text = viewer.textContent;
+            
+            if(text == '바위'){
+                viewer.textContent = '가위';
+            } else if(text == '가위'){
+                viewer.textContent = '보'
+            }else {
+                viewer.textContent = '바위'
+            }
+        }, 100);
+
+        var btns = document.querySelectorAll('.btns button');
+        btns.forEach(function(btn){
+            btn.addEventListener('click',function(e){
+                var text = this.textContent;
+                console.log(text);
+            });
+        }); 
 
     </script>
 </body>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<title>T모아쿠폰 모바일 IA</title>
+	<meta name="author" content="SK MNS">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+	<style type="text/css">
+		body {
+			background: white;
+			font: normal normal 13px/1.4 Segoe, "Segoe UI", Calibri, Helmet, FreeSans, Sans-Serif;
+			padding: 15px 30px; margin: 0;
+		}
+		.title {font-size: 16px; color: #369; font-weight: 800}
+		.tree,
+		.tree ul { margin: 0 0 0 1.5em; padding: 0; list-style: none; color: #369; position: relative; }
+
+		.tree ul { margin-left: .5em }
+
+		.tree:before,
+		.tree ul:before { content: ""; display: block; width: 0; position: absolute; top: 0; bottom: 0; left: 0; border-left: 1px solid; }
+
+		.tree li { margin: 0; padding: 0 1.5em; line-height: 2.2em; font-weight: bold; position: relative; }
+
+		.tree li a {display: inline-block; width: 30%; color: #369; text-decoration: none;}
+		.tree li a.new {color: #ff0000; text-decoration: underline;}
+		.tree li a.modify {color: #4ea429; text-decoration: underline;}
+
+		.tree li:before { content: ""; display: block; width: 10px; height: 0; border-top: 1px solid; margin-top: -1px;  position: absolute; top: 1em; left: 0; }
+
+		.tree li:last-child:before { background: white; height: auto; top: 1em; bottom: 0; }
+	</style>
+	<script src="http://www.okcashbag.com/common/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.tree li > a').on({
+				click : function(e) {
+					e.preventDefault();
+					$(this).siblings('ul').slideToggle(400)
+				}
+			})
+		})
+
+		// (function() {
+		// 	function init() {
+		// 		event();
+		// 	}
+
+		// 	function event() {
+		// 		$(window).on('keydown', function(e) {
+		// 			if( e.which == 37 ) { // left
+		// 				alert("left");
+		// 			} else if( e.which == 39 ) { // right
+		// 				alert("right");
+		// 			}
+		// 		})
+		// 	}
+
+		// 	$(document).ready( init );
+		// })();
+	</script>
+</head>
+
+<body>
+	m.tmoacoupon.co.kr
+	mt.tmoacoupon.co.kr
+	<div>
+		<p class="title">T모아쿠폰 모바일 IA</p>
+		<ul class="tree">
+			<li><a href="#" class="new">Intro (로그인)</a>
+				<ul>
+					<li><a href="" class="modify">메인<span>service</span></a>
+						<ul>
+							<li><a href="">홈</a></li>
+							<li><a href="">화끈딜</a></li>
+							<li><a href="">마트</a></li>
+							<li><a href="">제휴복지</a>
+								<ul>
+									<li><a href="">제휴복지 상세</a></li>
+								</ul>
+							</li>
+							<li><a href="">이벤트</a></li>
+						</ul>
+					</li>
+					<li><a href="">쿠폰발급</a>
+						<ul>
+							<li><a href="" class="modify">쿠폰발급</a>
+								<ul>
+									<li><a href="">발급내역</a>
+										<ul>
+											<li><a href="">발급내역상세1</a>
+												<ul>
+													<li><a href="">내용증명서 (팝업)</a></li>
+												</ul>
+											</li>
+											<li><a href="">발급내역상세2</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="">데이터충전</a>
+						<ul>
+							<li><a href="">데이터충전</a>
+								<ul>
+									<li><a href="">충전내역</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="">이벤트</a>
+						<ul>
+							<li><a href="">진행이벤트</a></li>
+							<li><a href="">지난이벤트</a></li>
+						</ul>
+					</li>
+					<li><a href="">고객센터</a>
+						<ul>
+							<li><a href="">공지사항</a></li>
+							<li><a href="">FAQ</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+
+
+
+</body>
+</html>

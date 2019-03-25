@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>지뢰찾기</title>
+    <style type="text/css">
+        .table {border-collapse: collapse; margin-top: 10px;}
+        td {width: 20px; height: 20px; text-align: center; line-height: 20px; border: 1px solid #333; cursor: pointer;}
+    </style>
+</head>
+<body>
+    <input type="number" class="hr" placeholder="가로" value="10">
+    <input type="number" class="vr" placeholder="세로" value="10">
+    <input type="number" class="mine" placeholder="지뢰" value="20">
+    <button type="button" class="exec">실행</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td><span class="timer">0</span>초</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        var exec = document.querySelector('.exec');
+        var hr,
+            vr,
+            mine;
+        var shuffle = [];    
+        var table = document.querySelector('.table');
+        var tbody = document.querySelector('.table tbody');
+        var dataSet = [];    
+
+        exec.addEventListener('click', function(e){
+            hr = document.querySelector('.hr').value;
+            vr = document.querySelector('.vr').value;
+            mine = document.querySelector('.mine').value;
+            // 지뢰게임 초기화
+            tbody.innerHTML = '';
+            
+            createTable();
+            groundMine();
+        });
+
+        // 지뢰 구하기 
+        function createMine(){
+            var mineNumber = new Array(hr*vr)
+                    .fill()
+                    .map(function(value, index){
+                        return index;
+                    });
+
+            while(mineNumber.length > 80){
+                var arr = mineNumber.splice(Math.floor(Math.random()*mineNumber.length), 1)[0];
+                shuffle.push(arr);
+            }  
+            return shuffle; 
+        }
+
+        // 지뢰 심기
+        function groundMine(){
+            var lan = createMine();
+            for(var i= 0; i< lan.length; i++){
+                // 42
+                var hang = Math.floor(shuffle[i] / 10);
+                var zul = Math.floor(shuffle[i] % 10);
+                tbody.children[hang].children[zul].textContent = 'X';
+                dataSet[hang][zul] = 'X';
+            }
+        }
+        
+        // 가로 X 세로 테이블 생성하기 
+        function createTable(){
+            
+            for(var i= 0; i< hr; i++){
+                var arr = []; 
+                
+                dataSet.push(arr);
+                var tr = document.createElement('tr');
+                for(var j= 0; j< vr; j++){
+                    arr.push(1);
+                    var td = document.createElement('td');
+                    tr.appendChild(td);
+
+                    td.addEventListener('contextmenu',function(e){
+                        var tr_c = e.currentTarget.parentNode;
+                        var tbody_c = e.currentTarget.parentNode.parentNode;
+                        
+                        //var hang = tbody.children.indexOf(tr);
+                        // var zul = tr.children.indexOf(td);
+                        var zul = Array.prototype.indexOf.call(tr_c.children, e.currentTarget);
+                        var hang = Array.prototype.indexOf.call(tbody_c.children, tr_c);
+
+                        if( e.currentTarget.textContent === '' || e.currentTarget.textContent === 'X' ){
+                            e.currentTarget.textContent = '!'; 
+                        }else if( e.currentTarget.textContent === '!' ){
+                            e.currentTarget.textContent = '?'; 
+                        }else if( e.currentTarget.textContent === '?' ){
+                            if( dataSet[hang][zul] === 1 ){
+                                e.currentTarget.textContent = ''
+                            }else if( dataSet[hang][zul] === 'X' ){
+                                e.currentTarget.textContent = 'X'
+                            }   
+                        }
+                        
+                    });
+
+                    td.addEventListener('click', function(e){
+                        var parent_tbody = e.currentTarget.parentNode.parentNode;
+                        var parent_tr = e.currentTarget.parentNode;
+
+                        //var hang = parent_tbody.children.indexOf(tr);
+                        //var zul = parent_tr.children.indexOf(td);
+
+                        var hang = Array.prototype.indexOf.call(parent_tbody.children, parent_tr);
+                        var zul = Array.prototype.indexOf.call(parent_tr.children, e.currentTarget);
+                        if( e.currentTarget.textContent === 'X' ){
+                            e.currentTarget.textContent = '꽝';
+                        }else{
+                            var around = [ 
+                                           dataSet[hang][zul-1], dataSet[hang][zul+1],
+                                           
+                             ];
+
+                            if( dataSet[hang-1] ) {
+                                around = around.concat(dataSet[hang-1][zul-1], dataSet[hang-1][zul], dataSet[hang-1][zul+1]);
+                            }if( dataSet[hang+1] ){
+                                around = around.concat(dataSet[hang+1][zul-1], dataSet[hang+1][zul], dataSet[hang+1][zul+1] );
+                            }
+
+                            e.currentTarget.textContent = around.filter(function(v){
+                                return v === 'X';
+                            }).length;
+                        }
+                    });
+                }
+                tbody.appendChild(tr);
+            }
+            
+        } // createTable
+    
+        
+        
+    </script>
+</body>
+</html>
